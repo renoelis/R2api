@@ -1,0 +1,19 @@
+services:
+  r2-uploader:
+    image: r2-uploader:latest
+    container_name: r2-uploader
+    restart: always
+    ports:
+      - "3009:3009"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true
+    name: api-proxy_proxy_net  # 指定正确的外部网络名称
