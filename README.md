@@ -74,7 +74,7 @@ docker-compose -f docker-compose-r2-uploader.yml up -d
 #### 1. 注册Token
 
 ```
-POST /api/register
+POST /R2api/register
 ```
 
 请求体:
@@ -99,7 +99,7 @@ POST /api/register
 #### 2. 续期Token
 
 ```
-POST /api/renew
+POST /R2api/renew
 ```
 
 请求体:
@@ -126,7 +126,7 @@ POST /api/renew
 #### 3. URL文件上传
 
 ```
-POST /api/upload
+POST /R2api/upload
 ```
 
 请求头:
@@ -163,7 +163,7 @@ Authorization: Bearer {token}
 #### 4. 直接文件上传
 
 ```
-POST /api/upload-direct
+POST /R2api/upload-direct
 ```
 
 请求头:
@@ -202,7 +202,7 @@ custom_domain: 自定义域名（可选）
 ### 注册Token
 
 ```bash
-curl -X POST http://localhost:3009/api/register \
+curl -X POST http://localhost:3009/R2api/register \
   -H "Content-Type: application/json" \
   -d '{"username":"testuser","email":"test@example.com","expires_in_days":30}'
 ```
@@ -210,7 +210,7 @@ curl -X POST http://localhost:3009/api/register \
 ### 续期Token
 
 ```bash
-curl -X POST http://localhost:3009/api/renew \
+curl -X POST http://localhost:3009/R2api/renew \
   -H "Content-Type: application/json" \
   -d '{
     "token": "your_token_here",
@@ -221,7 +221,7 @@ curl -X POST http://localhost:3009/api/renew \
 ### 将Token设为永久有效
 
 ```bash
-curl -X POST http://localhost:3009/api/renew \
+curl -X POST http://localhost:3009/R2api/renew \
   -H "Content-Type: application/json" \
   -d '{
     "token": "your_token_here",
@@ -232,7 +232,7 @@ curl -X POST http://localhost:3009/api/renew \
 ### 通过URL上传文件
 
 ```bash
-curl -X POST http://localhost:3009/api/upload \
+curl -X POST http://localhost:3009/R2api/upload \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{
@@ -249,7 +249,7 @@ curl -X POST http://localhost:3009/api/upload \
 ### 直接上传文件
 
 ```bash
-curl -X POST http://localhost:3009/api/upload-direct \
+curl -X POST http://localhost:3009/R2api/upload-direct \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -F "file=@/path/to/your/file.jpg" \
   -F "bucket_name=my-bucket" \
