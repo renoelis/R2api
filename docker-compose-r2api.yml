@@ -1,0 +1,27 @@
+services:
+  r2api:
+    image: r2api:latest
+    container_name: r2api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3009:3009"
+    environment:
+      - PORT=3009
+      - MAX_FILE_SIZE=209715200
+      - TOKEN_FILE_PATH=/var/lib/r2api/token_data.json
+    volumes:
+      - r2api_data:/var/lib/r2api
+    restart: always
+    networks:
+      - proxy_net
+
+volumes:
+  r2api_data:
+    # 使用命名卷存储令牌数据
+
+networks:
+  proxy_net:
+    external: true
+    name: api-proxy_proxy_net 
